@@ -10,8 +10,18 @@ class TicTacToeGameShould {
 		var result = game.play(0, 0);
 		assertEquals(
 				"X|_|_\n" +
+						"_|_|_\n" +
+						"_|_|_",
+				result
+		);
+	}@Test void
+	mark_the_first_move_in_center_left_cell_with_an_X() {
+		var game = new TicTacToeGame();
+		var result = game.play(0, 1);
+		assertEquals(
 				"_|_|_\n" +
-				"_|_|_",
+						"X|_|_\n" +
+						"_|_|_",
 				result
 		);
 	}

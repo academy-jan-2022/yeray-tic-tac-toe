@@ -14,7 +14,9 @@ class TicTacToeGameShould {
 						"_|_|_",
 				result
 		);
-	}@Test void
+	}
+
+	@Test void
 	mark_the_first_move_in_center_left_cell_with_an_X() {
 		var game = new TicTacToeGame();
 		var result = game.play(0, 1);

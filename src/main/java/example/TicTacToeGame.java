@@ -5,16 +5,21 @@ public class TicTacToeGame {
 		var line = getLine(point);
 
 		if (point.getX() == 1)
-			return line +
+			return line +"\n" +
 					"_|_|_\n" +
 					"_|_|_";
 
 		if (point.getY() == 1)
 			return "_|_|_\n" +
-					line +
+					line +"\n"+
 					"_|_|_";
 
-		return line +
+		if (point.getY() == 2)
+			return "_|_|_\n" +
+					"_|_|_\n" +
+					line ;
+
+		return line +"\n"+
 				"_|_|_\n" +
 				"_|_|_";
 	}
@@ -25,7 +30,7 @@ public class TicTacToeGame {
 			line.append(getCellContent(point, indexX));
 			line.append(getSeparator(indexX));
 		}
-		line.append("\n");
+
 		return line.toString();
 	}
 

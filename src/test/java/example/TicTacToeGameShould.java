@@ -53,7 +53,7 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
-	mark_the_first_move_in_bottom_right_cell_with_an_X() {
+	mark_the_first_move_in_bottom_left_cell_with_an_X() {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(0, 2));
 		assertEquals(

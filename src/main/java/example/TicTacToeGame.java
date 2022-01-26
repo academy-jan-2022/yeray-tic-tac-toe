@@ -3,7 +3,11 @@ package example;
 public class TicTacToeGame {
 	private boolean isPlayerOne = true;
 
+	private Board board = new Board();
+
 	public String play(Point point) {
+		board.setMyCell(getSymbol(),point.getX(), point.getY());
+		board.setMyCell(getSymbol(),point.getX(), point.getY());
 
 		return getMatrix(point);
 	}
@@ -46,13 +50,17 @@ public class TicTacToeGame {
 
 	private String getCellContent(Point point, int indexX) {
 		if (point.getX() == indexX) {
-			if (isPlayerOne) {
-				isPlayerOne = false;
-				return "X";
-			}
-			isPlayerOne = true;
-			return "O";
+			return getSymbol();
 		}
 		return "_";
+	}
+
+	private String getSymbol() {
+		if (isPlayerOne) {
+			isPlayerOne = false;
+			return "X";
+		}
+		isPlayerOne = true;
+		return "O";
 	}
 }

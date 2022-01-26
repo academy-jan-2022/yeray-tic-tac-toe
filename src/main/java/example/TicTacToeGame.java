@@ -2,24 +2,26 @@ package example;
 
 public class TicTacToeGame {
 	public String play(Point point) {
-		var line = getLine(point);
 
-		if (point.getX() == 1)
-			return line +"\n" +
-					"_|_|_\n" +
-					"_|_|_";
+
+		return getMatrix(point);
+	}
+
+	private String getMatrix(Point point) {
+
+		var line = getLine(point);
 
 		if (point.getY() == 1)
 			return "_|_|_\n" +
-					line +"\n"+
+					line + "\n" +
 					"_|_|_";
 
 		if (point.getY() == 2)
 			return "_|_|_\n" +
 					"_|_|_\n" +
-					line ;
+					line;
 
-		return line +"\n"+
+		return line + "\n" +
 				"_|_|_\n" +
 				"_|_|_";
 	}

@@ -8,15 +8,18 @@ public class TicTacToeGame {
 	private String getMatrix(Point point) {
 
 		var line = getLine(point);
-		var matrix = "";
+		StringBuilder matrix = new StringBuilder();
 
 		for (var i = 0; i< 3 ; i++){
-			if (i == point.getY()) matrix += line;
-			else matrix += "_|_|_";
-			if (i != 2) matrix += "\n";
+			matrix.append(foo(point, line, i));
+			if (i != 2) matrix.append("\n");
 		}
 
-		return  matrix;
+		return matrix.toString();
+	}
+
+	private String foo(Point point, String line, int i) {
+		return i == point.getY() ?  line : "_|_|_";
 	}
 
 	private String getLine(Point point) {

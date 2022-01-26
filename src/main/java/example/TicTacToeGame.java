@@ -4,13 +4,8 @@ public class TicTacToeGame {
 	public String play(Point point) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			if (point.getX() == indexX) {
-				line.append("X");
-			} else {
-				line.append("_");
-			}
-			if (indexX < 2)
-				line.append("|");
+			line.append(getCellContent(point, indexX));
+			line.append(getSeparator(indexX));
 		}
 		line.append("\n");
 
@@ -28,5 +23,13 @@ public class TicTacToeGame {
 		return line +
 				"_|_|_\n" +
 				"_|_|_";
+	}
+
+	private String getSeparator(int indexX) {
+		return indexX < 2 ? "|" : "";
+	}
+
+	private static String getCellContent(Point point, int indexX) {
+		return point.getX() == indexX ? "X" : "_";
 	}
 }

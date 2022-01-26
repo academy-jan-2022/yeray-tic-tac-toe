@@ -7,22 +7,26 @@ public class TicTacToeGame {
 
 	private String getMatrix(Point point) {
 
-		var line = getLine(point);
 		StringBuilder matrix = new StringBuilder();
 
 		for (var i = 0; i< 3 ; i++){
-			matrix.append(foo(point, line, i));
-			if (i != 2) matrix.append("\n");
+			matrix.append(getLine(point, i));
+			if (i != 2) {
+				matrix.append("\n");
+			}
 		}
 
 		return matrix.toString();
 	}
 
-	private String foo(Point point, String line, int i) {
-		return i == point.getY() ?  line : "_|_|_";
+	private String getLine(Point point, int i) {
+		if (i == point.getY()) {
+			return lineConstructor(point);
+		}
+		return "_|_|_";
 	}
 
-	private String getLine(Point point) {
+	private String lineConstructor(Point point) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
 			line.append(getCellContent(point, indexX));
@@ -33,10 +37,12 @@ public class TicTacToeGame {
 	}
 
 	private String getSeparator(int indexX) {
-		return indexX < 2 ? "|" : "";
+		if (indexX < 2) return "|";
+		return "";
 	}
 
 	private static String getCellContent(Point point, int indexX) {
-		return point.getX() == indexX ? "X" : "_";
+		if (point.getX() == indexX) return "X";
+		return "_";
 	}
 }

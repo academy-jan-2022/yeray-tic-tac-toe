@@ -15,4 +15,8 @@ public class Board {
         public String getMyCell(int x, int y) {
                 return this.myBoard[y][x];
         }
+
+        public String showBoard(){
+
+        }
 }

@@ -9,6 +9,8 @@ public class TicTacToeGame {
 		board.setMyCell(getSymbol(),point.getX(), point.getY());
 		board.setMyCell(getSymbol(),point.getX(), point.getY());
 
+
+
 		return getMatrix(point);
 	}
 

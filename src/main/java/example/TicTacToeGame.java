@@ -2,28 +2,21 @@ package example;
 
 public class TicTacToeGame {
 	public String play(Point point) {
-
-
 		return getMatrix(point);
 	}
 
 	private String getMatrix(Point point) {
 
 		var line = getLine(point);
+		var matrix = "";
 
-		if (point.getY() == 1)
-			return "_|_|_\n" +
-					line + "\n" +
-					"_|_|_";
+		for (var i = 0; i< 3 ; i++){
+			if (i == point.getY()) matrix += line;
+			else matrix += "_|_|_";
+			if (i != 2) matrix += "\n";
+		}
 
-		if (point.getY() == 2)
-			return "_|_|_\n" +
-					"_|_|_\n" +
-					line;
-
-		return line + "\n" +
-				"_|_|_\n" +
-				"_|_|_";
+		return  matrix;
 	}
 
 	private String getLine(Point point) {

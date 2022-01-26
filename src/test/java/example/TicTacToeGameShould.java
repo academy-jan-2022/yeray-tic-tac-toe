@@ -39,4 +39,18 @@ class TicTacToeGameShould {
 				result
 		);
 	}
+
+	@Test void
+	mark_the_first_move_in_right_top_cell_with_an_X() {
+		var game = new TicTacToeGame();
+		var result = game.play(new Point(2, 0));
+		assertEquals(
+				"_|_|X\n" +
+						"_|_|_\n" +
+						"_|_|_",
+				result
+		);
+	}
+
+
 }

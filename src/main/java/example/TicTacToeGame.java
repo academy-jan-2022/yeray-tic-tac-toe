@@ -1,10 +1,10 @@
 package example;
 
 public class TicTacToeGame {
-	public String play(int x, int y) {
+	public String play(Point point) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			if (x == indexX) {
+			if (point.getX() == indexX) {
 				line.append("X");
 			} else {
 				line.append("_");
@@ -15,12 +15,12 @@ public class TicTacToeGame {
 		line.append("\n");
 
 
-		if (x == 1)
+		if (point.getX() == 1)
 			return line +
 					"_|_|_\n" +
 					"_|_|_";
 
-		if (y == 1)
+		if (point.getY() == 1)
 			return "_|_|_\n" +
 					line +
 					"_|_|_";

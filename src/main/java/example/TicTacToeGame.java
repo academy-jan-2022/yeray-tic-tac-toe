@@ -1,7 +1,10 @@
 package example;
 
 public class TicTacToeGame {
+	private boolean isPlayerOne = true;
+
 	public String play(Point point) {
+
 		return getMatrix(point);
 	}
 
@@ -41,8 +44,15 @@ public class TicTacToeGame {
 		return "";
 	}
 
-	private static String getCellContent(Point point, int indexX) {
-		if (point.getX() == indexX) return "X";
+	private String getCellContent(Point point, int indexX) {
+		if (point.getX() == indexX) {
+			if (isPlayerOne) {
+				isPlayerOne = false;
+				return "X";
+			}
+			isPlayerOne = true;
+			return "O";
+		}
 		return "_";
 	}
 }

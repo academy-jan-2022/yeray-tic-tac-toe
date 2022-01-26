@@ -27,4 +27,16 @@ class TicTacToeGameShould {
 				result
 		);
 	}
+
+	@Test void
+	mark_the_first_move_in_center_top_cell_with_an_X() {
+		var game = new TicTacToeGame();
+		var result = game.play(1, 0);
+		assertEquals(
+				"_|X|_\n" +
+						"_|_|_\n" +
+						"_|_|_",
+				result
+		);
+	}
 }

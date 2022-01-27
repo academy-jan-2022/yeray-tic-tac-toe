@@ -3,6 +3,8 @@ package example;
 public class TicTacToeGame {
 	private boolean isPlayerOne = true;
 
+	private Point playerXTurn = null;
+
 	private Board board = new Board();
 
 	public String play(Point point) {
@@ -25,20 +27,26 @@ public class TicTacToeGame {
 			}
 		}
 
+		playerXTurn = point;
+		isPlayerOne = true;
+
 		return matrix.toString();
 	}
 
-	private String getLine(Point point, int i) {
-		if (i == point.getY()) {
-			return lineConstructor(point);
+	private String getLine(Point point, int indexY) {
+		if (playerXTurn != null && playerXTurn.getY() == indexY) {
+			return lineConstructor(playerXTurn, indexY);
+		}
+		if (indexY == point.getY()) {
+			return lineConstructor(point, indexY);
 		}
 		return "_|_|_";
 	}
 
-	private String lineConstructor(Point point) {
+	private String lineConstructor(Point point, int indexY) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			line.append(getCellContent(point, indexX));
+			line.append(getCellContent(point, new Point(indexX, indexY)));
 			line.append(getSeparator(indexX));
 		}
 
@@ -50,8 +58,8 @@ public class TicTacToeGame {
 		return "";
 	}
 
-	private String getCellContent(Point point, int indexX) {
-		if (point.getX() == indexX) {
+	private String getCellContent(Point point, Point index) {
+		if (point.equals(index)) {
 			return getSymbol();
 		}
 		return "_";

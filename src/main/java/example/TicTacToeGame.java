@@ -6,7 +6,9 @@ public class TicTacToeGame {
 	private Board board = new Board();
 
 	public String play(Point point) {
-		board.setMyCell(getSymbol(),point.getX(), point.getY());
+		if (!board.setMyCell(getSymbol(),point.getX(), point.getY())) {
+			isPlayerOne = !isPlayerOne;
+		}
 
 		return board.showBoard();
 	}

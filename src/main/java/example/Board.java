@@ -7,10 +7,12 @@ public class Board {
                 {"_","_","_"},
         };
 
-        public void setMyCell(String value, int x, int y) {
+        public boolean setMyCell(String value, int x, int y) {
                 if(this.myBoard[y][x] == "_") {
                         this.myBoard[y][x] = value;
+                        return true;
                 }
+                return false;
         }
 
 

@@ -240,4 +240,34 @@ class TicTacToeGameShould {
 		assertEquals("Player O wins", result);
 	}
 
+	@Test void
+	return_second_player_wins_if_3_o_diagonal_bottom_to_top(){
+		game.play(new Point(1, 2)); //x
+		game.play(new Point(0, 2)); //o
+		game.play(new Point(0, 1)); //x
+		game.play(new Point(1, 1)); //o
+		game.play(new Point(1, 0)); //x
+		var result = game.play(new Point(2, 0)); //x
+
+		assertEquals("Player O wins", result);
+	}
+
+	@Test void
+	return_draw_if_no_more_cells_are_free_and_no_winner(){
+		game.play(new Point(0, 0)); //x
+		game.play(new Point(1, 0)); //o
+		game.play(new Point(2, 0)); //x
+
+		game.play(new Point(1, 1)); //o
+		game.play(new Point(0, 1)); //x
+		game.play(new Point(0, 2)); //o
+
+		game.play(new Point(2, 1)); //x
+		game.play(new Point(2, 2)); //o
+
+		var result = game.play(new Point(1, 2)); //x
+
+		assertEquals("Draw", result);
+	}
+
 }

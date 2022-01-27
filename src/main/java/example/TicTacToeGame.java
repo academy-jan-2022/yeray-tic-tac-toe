@@ -9,6 +9,11 @@ public class TicTacToeGame {
 			player.flipPlayer();
 		}
 
+		if (board.showBoard().contains("X|X|X")){
+			return "Player X wins";
+		}
+
+
 		return board.showBoard();
 	}
 

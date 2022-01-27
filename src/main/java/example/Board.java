@@ -8,16 +8,11 @@ public class Board {
         };
 
         public boolean setMyCell(String value, int x, int y) {
-                if(this.myBoard[y][x] == "_") {
+                if(this.myBoard[y][x].equals("_")) {
                         this.myBoard[y][x] = value;
                         return true;
                 }
                 return false;
-        }
-
-
-        public String getMyCell(int x, int y) {
-                return this.myBoard[y][x];
         }
 
         public String showBoard(){

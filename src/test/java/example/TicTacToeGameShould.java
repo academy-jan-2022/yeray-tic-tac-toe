@@ -116,7 +116,7 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
-	accept_new_step_if_previous_taken_is_already_taken() {
+	accept_new_step_for_same_player_if_position_is_already_taken() {
 		game.play(new Point(0, 1));
 		game.play(new Point(0, 1));
 		var result = game.play(new Point(0, 2));
@@ -124,6 +124,17 @@ class TicTacToeGameShould {
 		assertEquals("_|_|_\n" +
 				"X|_|_\n" +
 				"O|_|_",result);
+	}
+
+	@Test void
+	return_first_player_wins_if_3_x_in_first_row(){
+		game.play(new Point(0, 0)); //x
+		game.play(new Point(1, 1)); //o
+		game.play(new Point(1, 0)); //x
+		game.play(new Point(1, 2)); //o
+		var result = game.play(new Point(2, 0)); //x
+
+		assertEquals("Player X wins", result);
 	}
 
 

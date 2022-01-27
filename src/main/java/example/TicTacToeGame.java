@@ -1,24 +1,21 @@
 package example;
 
 public class TicTacToeGame {
-	private boolean isPlayerOne = true;
-
 	private Board board = new Board();
+	private Player player = new Player();
 
 	public String play(Point point) {
-		if (!board.setMyCell(getSymbol(),point.getX(), point.getY())) {
-			isPlayerOne = !isPlayerOne;
+		if (board.setMyCell(getSymbol(),point.getX(), point.getY())) {
+			player.flipPlayer();
 		}
 
 		return board.showBoard();
 	}
 
 	private String getSymbol() {
-		if (isPlayerOne) {
-			isPlayerOne = false;
+		if (player.isPlayerX()) {
 			return "X";
 		}
-		isPlayerOne = true;
 		return "O";
 	}
 }

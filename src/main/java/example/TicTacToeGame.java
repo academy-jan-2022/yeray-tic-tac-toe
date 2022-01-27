@@ -37,6 +37,14 @@ public class TicTacToeGame {
 				return "Player X wins";
 			}
 		}
+
+		for (var i = 0; i < 3; i++){
+			if (result.charAt(0+i) == 'O'
+					  && result.charAt(3+i) == 'O'
+					  && result.charAt(6+i) == 'O'){
+				return "Player O wins";
+			}
+		}
 		if (result.charAt(0) == 'X'
 				&& result.charAt(4) == 'X'
 				&& result.charAt(8) == 'X'

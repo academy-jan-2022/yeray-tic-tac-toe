@@ -192,4 +192,16 @@ class TicTacToeGameShould {
 		assertEquals("Player X wins", result);
 	}
 
+	@Test void
+	return_second_player_wins_if_3_o_in_first_row(){
+		game.play(new Point(1, 1)); //x
+		game.play(new Point(0, 0)); //o
+		game.play(new Point(2, 1)); //x
+		game.play(new Point(1, 0)); //o
+		game.play(new Point(0, 2)); //x
+		var result = game.play(new Point(2, 0)); //o
+
+		assertEquals("Player O wins", result);
+	}
+
 }

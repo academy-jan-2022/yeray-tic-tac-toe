@@ -17,6 +17,11 @@ public class TicTacToeGame {
 			return  "Player O wins";
 		}
 
+		if (isItADraw(board)) {
+			return "Draw";
+		}
+
+
 		return board.showBoard();
 	}
 
@@ -48,5 +53,13 @@ public class TicTacToeGame {
 				|| result.charAt(2) == playerSymbol
 				&& result.charAt(4) == playerSymbol
 				&& result.charAt(6) == playerSymbol;
+	}
+
+	private boolean isItADraw(Board board) {
+		String result = board.showBoard().replace("|", "").replace("\n", "");
+
+		if (result.length() == 9 && !result.contains("_"))
+			return true;
+		return false;
 	}
 }

@@ -7,10 +7,6 @@ public class Player {
 		return playerX;
 	}
 
-	public void setPlayer(boolean playerX) {
-		this.playerX = playerX;
-	}
-
 	public void flipPlayer(){
 		this.playerX = !this.playerX;
 	}

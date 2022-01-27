@@ -13,7 +13,6 @@ public class TicTacToeGame {
 			return "Player X wins";
 		}
 
-
 		return checkResults(board);
 	}
 
@@ -21,6 +20,7 @@ public class TicTacToeGame {
 		if (player.isPlayerX()) {
 			return "X";
 		}
+
 		return "O";
 	}
 
@@ -33,7 +33,11 @@ public class TicTacToeGame {
 		||
 		result.charAt(1) == 'X'
 				&& result.charAt(4) == 'X'
-				&& result.charAt(7) == 'X')
+				&& result.charAt(7) == 'X'
+		||
+		result.charAt(2) == 'X'
+				  && result.charAt(5) == 'X'
+				  && result.charAt(8) == 'X')
 		{
 			return "Player X wins";
 		}

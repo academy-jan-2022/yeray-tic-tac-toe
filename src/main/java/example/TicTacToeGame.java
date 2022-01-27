@@ -14,7 +14,7 @@ public class TicTacToeGame {
 		}
 
 
-		return board.showBoard();
+		return checkResults(board);
 	}
 
 	private String getSymbol() {
@@ -22,5 +22,18 @@ public class TicTacToeGame {
 			return "X";
 		}
 		return "O";
+	}
+
+	private String checkResults(Board board) {
+		String result = board.showBoard().replace("|", "").replace("\n", "");
+
+		if (result.charAt(0) == 'X'
+			&& result.charAt(3) == 'X'
+			&& result.charAt(6) == 'X')
+		{
+			return "Player X wins";
+		}
+
+		return board.showBoard();
 	}
 }

@@ -29,7 +29,11 @@ public class TicTacToeGame {
 
 		if (result.charAt(0) == 'X'
 			&& result.charAt(3) == 'X'
-			&& result.charAt(6) == 'X')
+			&& result.charAt(6) == 'X'
+		||
+		result.charAt(1) == 'X'
+				&& result.charAt(4) == 'X'
+				&& result.charAt(7) == 'X')
 		{
 			return "Player X wins";
 		}

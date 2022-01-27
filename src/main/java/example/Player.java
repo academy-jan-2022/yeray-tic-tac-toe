@@ -7,7 +7,7 @@ public class Player {
 		return playerX;
 	}
 
-	public void flipPlayer(){
+	public void flip(){
 		this.playerX = !this.playerX;
 	}
 }

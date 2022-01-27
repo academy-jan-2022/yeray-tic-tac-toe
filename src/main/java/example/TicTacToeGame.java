@@ -6,14 +6,9 @@ public class TicTacToeGame {
 
 	public String play(Point point) {
 
-		boolean isValidMove= board.setMyCell(getSymbol(), point.getX(), point.getY());
+		boolean isValidMove = board.setMyCell(getSymbol(), point.getX(), point.getY());
 
-		String output = isGameEnded(board,getSymbol().charAt(0));
-
-		if(isValidMove){
-			player.flipPlayer();
-		}
-		return output;
+		return isGameEnded(board,getSymbol().charAt(0), isValidMove);
 	}
 
 	private String getSymbol() {
@@ -24,24 +19,33 @@ public class TicTacToeGame {
 		return "O";
 	}
 
-	private String isGameEnded(Board board, char playerSymbol) {
+	private String isGameEnded(Board board, char playerSymbol, boolean isValidMove) {
 		String result = board.showBoard().replace("|", "").replace("\n", "");
+
 		if(     isARowWinning(board, playerSymbol) ||
 				isAColumnWinning(playerSymbol, result) ||
 				isADiagonalWinning(playerSymbol, result)
 		){
 				return "Player " + playerSymbol + " wins";
 		};
+
 		if (isItADraw(board)) {
 			return "Draw";
 		}
+
+		if(isValidMove){
+			player.flip();
+		}
+
 		return board.showBoard();
 	}
 
 
 
 	private Boolean isARowWinning(Board board, char playerSymbol) {
-		return board.showBoard().contains(playerSymbol +"|"+ playerSymbol +"|"+ playerSymbol);
+		return board.showBoard().contains(
+				playerSymbol +"|"+ playerSymbol +"|"+ playerSymbol
+		);
 	}
 
 	private  Boolean isAColumnWinning(char playerSymbol, String result){

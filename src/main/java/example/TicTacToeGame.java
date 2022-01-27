@@ -9,14 +9,7 @@ public class TicTacToeGame {
 			player.flipPlayer();
 		}
 
-		if (board.showBoard().contains("X|X|X")){
-			return "Player X wins";
-		}
-		if (board.showBoard().contains("O|O|O")){
-			return "Player O wins";
-		}
-
-		return checkResults(board);
+		return isAnyWinnerCombination(board);
 	}
 
 	private String getSymbol() {
@@ -27,7 +20,14 @@ public class TicTacToeGame {
 		return "O";
 	}
 
-	private String checkResults(Board board) {
+	private String isAnyWinnerCombination(Board board) {
+		if (board.showBoard().contains("X|X|X")){
+			return "Player X wins";
+		}
+		if (board.showBoard().contains("O|O|O")){
+			return "Player O wins";
+		}
+
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
 		for (var i = 0; i < 3; i++){

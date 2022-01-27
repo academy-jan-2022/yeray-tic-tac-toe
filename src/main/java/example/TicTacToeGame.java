@@ -54,6 +54,15 @@ public class TicTacToeGame {
 			return "Player X wins";
 		}
 
+		if (result.charAt(0) == 'O'
+				&& result.charAt(4) == 'O'
+				&& result.charAt(8) == 'O'
+				|| result.charAt(2) == 'O'
+				&& result.charAt(4) == 'O'
+				&& result.charAt(6) == 'O'){
+			return "Player O wins";
+		}
+
 		return board.showBoard();
 	}
 }

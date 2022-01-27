@@ -1,27 +1,18 @@
 package example;
 
 public class TicTacToeGame {
-	private Board board = new Board();
-	private Player player = new Player();
+	private final Board board = new Board();
+	private final Player player = new Player();
 
 	public String play(Point point) {
-		if (board.setMyCell(getSymbol(),point.getX(), point.getY())) {
+
+		boolean checker= board.setMyCell(getSymbol(), point.getX(), point.getY());
+
+		String output = isAnyWinnerCombination(board,getSymbol().charAt(0));
+		if(checker){
 			player.flipPlayer();
 		}
-
-		if (isAnyWinnerCombination(board, 'X')){
-		 return  "Player X wins";
-		}
-
-		if (isAnyWinnerCombination(board, 'O')){
-			return  "Player O wins";
-		}
-
-		if (isItADraw(board)) {
-			return "Draw";
-		}
-
-		return board.showBoard();
+		return output;
 	}
 
 	private String getSymbol() {
@@ -32,9 +23,9 @@ public class TicTacToeGame {
 		return "O";
 	}
 
-	private boolean isAnyWinnerCombination(Board board, char playerSymbol) {
+	private String isAnyWinnerCombination(Board board, char playerSymbol) {
 		if (board.showBoard().contains(""+playerSymbol+"|"+playerSymbol+"|"+playerSymbol)){
-			return true;
+			return "Player "+playerSymbol+" wins";
 		}
 
 		String result = board.showBoard().replace("|", "").replace("\n", "");
@@ -43,23 +34,28 @@ public class TicTacToeGame {
 			if (result.charAt(i) == playerSymbol
 					&& result.charAt(3+i) == playerSymbol
 					&& result.charAt(6+i) == playerSymbol){
-				return true;
+				return "Player "+playerSymbol+" wins";
 			}
 		}
 
-		return result.charAt(0) == playerSymbol
+		if(result.charAt(0) == playerSymbol
 				&& result.charAt(4) == playerSymbol
 				&& result.charAt(8) == playerSymbol
 				|| result.charAt(2) == playerSymbol
 				&& result.charAt(4) == playerSymbol
-				&& result.charAt(6) == playerSymbol;
+				&& result.charAt(6) == playerSymbol){
+			return "Player "+playerSymbol+" wins";
+		};
+
+		if (isItADraw(board)) {
+			return "Draw";
+		}
+		return board.showBoard();
 	}
 
 	private boolean isItADraw(Board board) {
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
-		if (result.length() == 9 && !result.contains("_"))
-			return true;
-		return false;
+		return result.length() == 9 && !result.contains("_");
 	}
 }

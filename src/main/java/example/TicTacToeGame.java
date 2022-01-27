@@ -21,7 +21,6 @@ public class TicTacToeGame {
 			return "Draw";
 		}
 
-
 		return board.showBoard();
 	}
 
@@ -37,6 +36,7 @@ public class TicTacToeGame {
 		if (board.showBoard().contains(""+playerSymbol+"|"+playerSymbol+"|"+playerSymbol)){
 			return true;
 		}
+
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
 		for (var i = 0; i < 3; i++){

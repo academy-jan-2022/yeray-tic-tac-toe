@@ -92,5 +92,18 @@ class TicTacToeGameShould {
 		);
 	}
 
+	@Test void
+	three_steps() {
+		game.play(new Point(0, 1));
+		game.play(new Point(0, 2));
+		var result = game.play(new Point(1, 2));
+		assertEquals(
+				  "_|_|_\n" +
+							 "X|_|_\n" +
+							 "O|X|_",
+				  result
+		);
+	}
+
 
 }

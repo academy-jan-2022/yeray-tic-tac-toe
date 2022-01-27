@@ -17,6 +17,13 @@ public class Board {
         }
 
         public String showBoard(){
-
+                StringBuilder result = new StringBuilder();
+                for (int i=0; i < myBoard.length; i++) {
+                        result.append(String.join("|", myBoard[i]));
+                        if (i < 2) {
+                                result.append("\n");
+                        }
+                }
+                return result.toString();
         }
 }

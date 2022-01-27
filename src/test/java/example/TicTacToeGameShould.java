@@ -92,5 +92,15 @@ class TicTacToeGameShould {
 		);
 	}
 
-
+	@Test void
+	mark_the_second_move_in_middle_left_cell_with_an_O() {
+		game.play(new Point(0, 2));
+		var result = game.play(new Point(0, 1));
+		assertEquals(
+				"_|_|_\n" +
+						"O|_|_\n" +
+						"X|_|_",
+				result
+		);
+	}
 }

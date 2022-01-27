@@ -93,7 +93,7 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
-	three_steps() {
+	handle_three_steps() {
 		game.play(new Point(0, 1));
 		game.play(new Point(0, 2));
 		var result = game.play(new Point(1, 2));
@@ -103,6 +103,14 @@ class TicTacToeGameShould {
 							 "O|X|_",
 				  result
 		);
+	}
+
+	@Test void
+	throw_invalid_cell_exception_if_cell_is_already_taken() {
+		game.play(new Point(0, 1));
+		var result = game.play(new Point(0, 1));
+
+		assertEquals("Cell already taken", result);
 	}
 
 

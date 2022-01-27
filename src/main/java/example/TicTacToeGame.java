@@ -4,17 +4,18 @@ public class TicTacToeGame {
 	public String play(Point point) {
 		var line = getLine(point);
 
-		if (point.getX() == 1)
-			return line +
+
+		if (point.getY() == 2)
+			return "_|_|_\n" +
 					"_|_|_\n" +
-					"_|_|_";
+					line;
 
 		if (point.getY() == 1)
 			return "_|_|_\n" +
-					line +
+					line + "\n" +
 					"_|_|_";
 
-		return line +
+		return line + "\n" +
 				"_|_|_\n" +
 				"_|_|_";
 	}
@@ -25,7 +26,6 @@ public class TicTacToeGame {
 			line.append(getCellContent(point, indexX));
 			line.append(getSeparator(indexX));
 		}
-		line.append("\n");
 		return line.toString();
 	}
 

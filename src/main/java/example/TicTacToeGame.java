@@ -27,19 +27,12 @@ public class TicTacToeGame {
 	private String checkResults(Board board) {
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
-		if (result.charAt(0) == 'X'
-			&& result.charAt(3) == 'X'
-			&& result.charAt(6) == 'X'
-		||
-		result.charAt(1) == 'X'
-				&& result.charAt(4) == 'X'
-				&& result.charAt(7) == 'X'
-		||
-		result.charAt(2) == 'X'
-				  && result.charAt(5) == 'X'
-				  && result.charAt(8) == 'X')
-		{
-			return "Player X wins";
+		for (var i = 0; i < 3; i++){
+			if (result.charAt(0+i) == 'X'
+					&& result.charAt(3+i) == 'X'
+					&& result.charAt(6+i) == 'X'){
+				return "Player X wins";
+			}
 		}
 
 		return board.showBoard();

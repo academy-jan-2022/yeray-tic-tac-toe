@@ -9,7 +9,15 @@ public class TicTacToeGame {
 			player.flipPlayer();
 		}
 
-		return isAnyWinnerCombination(board);
+		if (isAnyWinnerCombination(board, 'X')){
+		 return  "Player X wins";
+		}
+
+		if (isAnyWinnerCombination(board, 'O')){
+			return  "Player O wins";
+		}
+
+		return board.showBoard();
 	}
 
 	private String getSymbol() {
@@ -20,49 +28,32 @@ public class TicTacToeGame {
 		return "O";
 	}
 
-	private String isAnyWinnerCombination(Board board) {
-		if (board.showBoard().contains("X|X|X")){
-			return "Player X wins";
+	private boolean isAnyWinnerCombination(Board board, char playerSymbol) {
+		if (board.showBoard().contains(""+playerSymbol+"|"+playerSymbol+"|"+playerSymbol)){
+			return true;
 		}
-		if (board.showBoard().contains("O|O|O")){
-			return "Player O wins";
-		}
+
 
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
 		for (var i = 0; i < 3; i++){
-			if (result.charAt(0+i) == 'X'
-					&& result.charAt(3+i) == 'X'
-					&& result.charAt(6+i) == 'X'){
-				return "Player X wins";
+			if (result.charAt(0+i) == playerSymbol
+					&& result.charAt(3+i) == playerSymbol
+					&& result.charAt(6+i) == playerSymbol){
+				return true;
 			}
 		}
 
-		for (var i = 0; i < 3; i++){
-			if (result.charAt(0+i) == 'O'
-					  && result.charAt(3+i) == 'O'
-					  && result.charAt(6+i) == 'O'){
-				return "Player O wins";
-			}
-		}
-		if (result.charAt(0) == 'X'
-				&& result.charAt(4) == 'X'
-				&& result.charAt(8) == 'X'
-			|| result.charAt(2) == 'X'
-				  && result.charAt(4) == 'X'
-				  && result.charAt(6) == 'X'){
-			return "Player X wins";
+
+		if (result.charAt(0) == playerSymbol
+				&& result.charAt(4) == playerSymbol
+				&& result.charAt(8) == playerSymbol
+			|| result.charAt(2) == playerSymbol
+				  && result.charAt(4) == playerSymbol
+				  && result.charAt(6) == playerSymbol){
+			return true;
 		}
 
-		if (result.charAt(0) == 'O'
-				&& result.charAt(4) == 'O'
-				&& result.charAt(8) == 'O'
-				|| result.charAt(2) == 'O'
-				&& result.charAt(4) == 'O'
-				&& result.charAt(6) == 'O'){
-			return "Player O wins";
-		}
-
-		return board.showBoard();
+		return false;
 	}
 }

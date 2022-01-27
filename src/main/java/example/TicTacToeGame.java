@@ -1,9 +1,13 @@
 package example;
 
 public class TicTacToeGame {
+	private Point playerXTurn = null;
+
 	public String play(Point point) {
 		var line = getLine(point);
 
+		if (playerXTurn == null)
+			playerXTurn = point;
 
 		if (point.getY() == 2)
 			return "_|_|_\n" +
@@ -33,7 +37,16 @@ public class TicTacToeGame {
 		return indexX < 2 ? "|" : "";
 	}
 
-	private static String getCellContent(Point point, int indexX) {
-		return point.getX() == indexX ? "X" : "_";
+	private String getCellContent(Point point, int indexX) {
+		boolean isMarkOnFirstTurn = playerXTurn == null && point.getX() == indexX;
+		boolean wasMarkOnFirstTurn = playerXTurn != null && playerXTurn.getX() == indexX;
+
+		if (isMarkOnFirstTurn || wasMarkOnFirstTurn)
+			return "X";
+
+		if (playerXTurn != null && point.getX() == indexX)
+			return "O";
+
+		return "_";
 	}
 }

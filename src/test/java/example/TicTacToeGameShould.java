@@ -106,11 +106,24 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
-	throw_invalid_cell_exception_if_cell_is_already_taken() {
+	ignore_step_if_cell_is_already_taken() {
 		game.play(new Point(0, 1));
 		var result = game.play(new Point(0, 1));
 
-		assertEquals("Cell already taken", result);
+		assertEquals("_|_|_\n" +
+				"X|_|_\n" +
+				"_|_|_",result);
+	}
+
+	@Test void
+	accept_new_step_if_previous_taken_is_already_taken() {
+		game.play(new Point(0, 1));
+		game.play(new Point(0, 1));
+		var result = game.play(new Point(0, 2));
+
+		assertEquals("_|_|_\n" +
+				"X|_|_\n" +
+				"O|_|_",result);
 	}
 
 

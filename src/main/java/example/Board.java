@@ -8,7 +8,9 @@ public class Board {
         };
 
         public void setMyCell(String value, int x, int y) {
-                this.myBoard[y][x] = value;
+                if(this.myBoard[y][x] == "_") {
+                        this.myBoard[y][x] = value;
+                }
         }
 
 

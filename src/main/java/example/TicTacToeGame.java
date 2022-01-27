@@ -32,28 +32,21 @@ public class TicTacToeGame {
 		if (board.showBoard().contains(""+playerSymbol+"|"+playerSymbol+"|"+playerSymbol)){
 			return true;
 		}
-
-
 		String result = board.showBoard().replace("|", "").replace("\n", "");
 
 		for (var i = 0; i < 3; i++){
-			if (result.charAt(0+i) == playerSymbol
+			if (result.charAt(i) == playerSymbol
 					&& result.charAt(3+i) == playerSymbol
 					&& result.charAt(6+i) == playerSymbol){
 				return true;
 			}
 		}
 
-
-		if (result.charAt(0) == playerSymbol
+		return result.charAt(0) == playerSymbol
 				&& result.charAt(4) == playerSymbol
 				&& result.charAt(8) == playerSymbol
-			|| result.charAt(2) == playerSymbol
-				  && result.charAt(4) == playerSymbol
-				  && result.charAt(6) == playerSymbol){
-			return true;
-		}
-
-		return false;
+				|| result.charAt(2) == playerSymbol
+				&& result.charAt(4) == playerSymbol
+				&& result.charAt(6) == playerSymbol;
 	}
 }

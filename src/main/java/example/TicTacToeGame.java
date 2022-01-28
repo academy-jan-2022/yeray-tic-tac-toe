@@ -27,7 +27,7 @@ public class TicTacToeGame {
 	private String renderLine(Point point) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			line.append(getCellContent(point, indexX));
+			line.append(getCellContent(point, playerXMove, indexX));
 			line.append(getSeparator(indexX));
 		}
 		return line.toString();
@@ -39,14 +39,14 @@ public class TicTacToeGame {
 		return "";
 	}
 
-	private String getCellContent(Point point, int indexX) {
-		boolean isMarkOnFirstTurn = playerXMove == null && point.x() == indexX;
-		boolean wasMarkOnFirstTurn = playerXMove != null && playerXMove.point().x() == indexX;
+	private String getCellContent(Point point, Move xMove, int indexX) {
+		boolean isMarkOnFirstTurn = xMove == null && point.x() == indexX;
+		boolean wasMarkOnFirstTurn = xMove != null && xMove.point().x() == indexX;
 
 		if (isMarkOnFirstTurn || wasMarkOnFirstTurn)
 			return "X";
 
-		if (playerXMove != null && point.x() == indexX)
+		if (xMove != null && point.x() == indexX)
 			return "O";
 
 		return "_";

@@ -29,8 +29,15 @@ public class Moves {
 				&& bO.isPresent() && bO.get().player() == O
 				&& cO.isPresent() && cO.get().player() == O;
 
+		var aDX = find(new Point(0, 0));
+		var bDX = find(new Point(1, 1));
+		var cDX = find(new Point(2, 2));
+		var hasXWonInDiagonal = aDX.isPresent() && aDX.get().player() == X
+				&& bDX.isPresent() && bDX.get().player() == X
+				&& cDX.isPresent() && cDX.get().player() == X;
 
-		return hasXWon || hasOWon;
+
+		return hasXWon || hasOWon || hasXWonInDiagonal;
 	}
 
 	private Player getCurrentPlayer() {

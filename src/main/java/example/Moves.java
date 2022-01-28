@@ -10,6 +10,12 @@ import java.util.Optional;
 public class Moves {
 	private final List<Move> moves = new ArrayList<>();
 
+	private final Point[][] winningLines = new Point[][] {
+			new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) },
+			new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) },
+			new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }
+	};
+
 	public void add(Point point) {
 		if (find(point).isEmpty() && !isWon())
 			moves.add(new Move(getCurrentPlayer(), point));
@@ -17,12 +23,10 @@ public class Moves {
 
 	private boolean isWon() {
 		for (Player player: Player.values()) {
-			if (isWinningLine(new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) }, player))
-				return true;
-			if (isWinningLine(new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) }, player))
-				return true;
-			if (isWinningLine(new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }, player))
-				return true;
+			for (Point[] winningLine: winningLines) {
+				if (isWinningLine(winningLine, player))
+					return true;
+			}
 		}
 
 		return false;

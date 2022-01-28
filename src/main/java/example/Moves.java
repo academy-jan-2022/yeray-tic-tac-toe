@@ -15,7 +15,7 @@ public class Moves {
 
 	private Player getCurrentPlayer() {
 		return getLastMove()
-				.map(move -> move.isPlayer(X) ? O : X)
+				.map(move -> move.player().flip())
 				.orElse(X);
 	}
 

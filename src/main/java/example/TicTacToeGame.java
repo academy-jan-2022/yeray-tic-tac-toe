@@ -1,7 +1,6 @@
 package example;
 
 
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TicTacToeGame {
@@ -10,28 +9,21 @@ public class TicTacToeGame {
 	public String play(Point point) {
 		moves.add(point);
 
-		var lines =
-				IntStream
-						.range(0, 3)
-						.mapToObj(indexY -> renderLine(moves, indexY))
-						.toList();
+		var lines = IntStream
+			.range(0, 3)
+			.mapToObj(indexY -> renderLine(moves, indexY))
+			.toList();
 
 		return String.join("\n", lines);
 	}
 
 	private static String renderLine(Moves moves, int indexY) {
-		var line = new StringBuilder();
-		for (int indexX = 0; indexX < 3; indexX++) {
-			line.append(getCellContent(moves, new Point(indexX, indexY)));
-			line.append(getSeparator(indexX));
-		}
-		return line.toString();
-	}
+		var cells = IntStream
+			.range(0, 3)
+			.mapToObj(indexX -> getCellContent(moves, new Point(indexX, indexY)))
+			.toList();
 
-	private static String getSeparator(int indexX) {
-		if (indexX < 2)
-			return "|";
-		return "";
+		return String.join("|", cells);
 	}
 
 	private static String getCellContent(Moves moves, Point index) {

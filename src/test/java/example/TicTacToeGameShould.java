@@ -165,6 +165,25 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
+	X_wins_in_diagonal_line_so_stops_drawing() {
+		var game = new TicTacToeGame();
+
+		game.play(new Point(0, 0));
+		game.play(new Point(1, 0));
+		game.play(new Point(1, 1));
+		game.play(new Point(1, 2));
+		game.play(new Point(2, 2));
+		var result = game.play(new Point(2, 0));
+		assertEquals(
+				"""
+						X|O|_
+						_|X|_
+						_|O|X""",
+				result
+		);
+	}
+
+	@Test void
 	fills_the_whole_board() {
 		var game = new TicTacToeGame();
 		game.play(new Point(0,0));

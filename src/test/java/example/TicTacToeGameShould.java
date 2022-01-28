@@ -9,9 +9,10 @@ class TicTacToeGameShould {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(0, 0));
 		assertEquals(
-				"X|_|_\n" +
-						"_|_|_\n" +
-						"_|_|_",
+				"""
+						X|_|_
+						_|_|_
+						_|_|_""",
 				result
 		);
 	}
@@ -21,9 +22,10 @@ class TicTacToeGameShould {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(0, 1));
 		assertEquals(
-				"_|_|_\n" +
-						"X|_|_\n" +
-						"_|_|_",
+				"""
+						_|_|_
+						X|_|_
+						_|_|_""",
 				result
 		);
 	}
@@ -33,9 +35,10 @@ class TicTacToeGameShould {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(1, 0));
 		assertEquals(
-				"_|X|_\n" +
-						"_|_|_\n" +
-						"_|_|_",
+				"""
+						_|X|_
+						_|_|_
+						_|_|_""",
 				result
 		);
 	}
@@ -45,9 +48,10 @@ class TicTacToeGameShould {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(2, 0));
 		assertEquals(
-				"_|_|X\n" +
-						"_|_|_\n" +
-						"_|_|_",
+				"""
+						_|_|X
+						_|_|_
+						_|_|_""",
 				result
 		);
 	}
@@ -57,9 +61,10 @@ class TicTacToeGameShould {
 		var game = new TicTacToeGame();
 		var result = game.play(new Point(0, 2));
 		assertEquals(
-				"_|_|_\n" +
-						"_|_|_\n" +
-						"X|_|_",
+				"""
+						_|_|_
+						_|_|_
+						X|_|_""",
 				result
 		);
 	}
@@ -70,9 +75,10 @@ class TicTacToeGameShould {
 		game.play(new Point(2, 1));
 		var result = game.play(new Point(1, 1));
 		assertEquals(
-				"_|_|_\n" +
-						"_|O|X\n" +
-						"_|_|_",
+				"""
+						_|_|_
+						_|O|X
+						_|_|_""",
 				result
 		);
 	}

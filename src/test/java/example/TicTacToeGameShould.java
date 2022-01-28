@@ -111,4 +111,25 @@ class TicTacToeGameShould {
 				result
 		);
 	}
+
+	@Test void
+	draws_the_whole_board() {
+		var game = new TicTacToeGame();
+		game.play(new Point(0,0));
+		game.play(new Point(1,0));
+		game.play(new Point(0,1));
+		game.play(new Point(0,2));
+		game.play(new Point(1,2));
+		game.play(new Point(1,1));
+		game.play(new Point(2,0));
+		game.play(new Point(2,2));
+		String result = game.play(new Point(2, 1));
+		assertEquals(
+				"""
+						X|O|X
+						X|O|X
+						O|X|O""",
+				result
+		);
+	}
 }

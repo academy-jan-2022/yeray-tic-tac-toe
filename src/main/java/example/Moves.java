@@ -1,6 +1,5 @@
 package example;
 
-import static example.Player.O;
 import static example.Player.X;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,9 +10,16 @@ public class Moves {
 	private final List<Move> moves = new ArrayList<>();
 
 	private final Point[][] winningLines = new Point[][] {
-			new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) },
 			new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) },
-			new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }
+			new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) },
+			new Point[] { new Point(0, 2), new Point(1, 2), new Point(2, 2) },
+
+			new Point[] { new Point(0, 0), new Point(0, 1), new Point(0, 2) },
+			new Point[] { new Point(1, 0), new Point(1, 1), new Point(1, 2) },
+			new Point[] { new Point(2, 0), new Point(2, 1), new Point(2, 2) },
+
+			new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) },
+			new Point[] { new Point(2, 0), new Point(1, 1), new Point(0, 2) }
 	};
 
 	public void add(Point point) {
@@ -22,14 +28,11 @@ public class Moves {
 	}
 
 	private boolean isWon() {
-		for (Player player: Player.values()) {
-			for (Point[] winningLine: winningLines) {
-				if (isWinningLine(winningLine, player))
-					return true;
-			}
-		}
-
-		return false;
+		return Arrays.stream(Player
+				.values())
+				.anyMatch(player ->
+						Arrays.stream(winningLines).anyMatch(winningLine -> isWinningLine(winningLine, player))
+				);
 	}
 
 	private boolean isWinningLine(Point[] points, Player player) {

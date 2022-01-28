@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Moves {
 	private final List<Move> moves = new ArrayList<>();
@@ -15,13 +16,15 @@ public class Moves {
 	}
 
 	private boolean isWon() {
-		return Arrays.stream(Player.values())
-				.anyMatch(player ->
-						Arrays.stream(WinningLines.all)
-								.anyMatch(winningLine ->
-										isWinningLine(winningLine, player)
-								)
-				);
+		return Arrays.stream(Player.values()).anyMatch(isThereAWinFor());
+	}
+
+	private Predicate<Player> isThereAWinFor() {
+		return player -> Arrays.stream(WinningLines.all).anyMatch(isWinningLineFor(player));
+	}
+
+	private Predicate<Point[]> isWinningLineFor(Player player) {
+		return winningLine -> isWinningLine(winningLine, player);
 	}
 
 	private boolean isWinningLine(Point[] points, Player player) {

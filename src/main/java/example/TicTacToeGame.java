@@ -1,15 +1,22 @@
 package example;
 
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class TicTacToeGame {
 	private final Moves moves = new Moves();
 
 	public String play(Point point) {
 		moves.add(point);
 
-		return renderLine(moves, 0) + "\n" +
-				renderLine(moves, 1) + "\n" +
-				renderLine(moves, 2);
+		var lines =
+				IntStream
+						.range(0, 3)
+						.mapToObj(indexY -> renderLine(moves, indexY))
+						.toList();
+
+		return String.join("\n", lines);
 	}
 
 	private static String renderLine(Moves moves, int indexY) {

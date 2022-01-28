@@ -7,27 +7,15 @@ public class TicTacToeGame {
 	public String play(Point point) {
 		moves.add(point);
 
-		var line = renderLine(moves);
-
-		if (point.y() == 2)
-			return "_|_|_\n" +
-					"_|_|_\n" +
-					line;
-
-		if (point.y() == 1)
-			return "_|_|_\n" +
-					line + "\n" +
-					"_|_|_";
-
-		return line + "\n" +
-				"_|_|_\n" +
-				"_|_|_";
+		return renderLine(moves, 0) + "\n" +
+				renderLine(moves, 1) + "\n" +
+				renderLine(moves, 2);
 	}
 
-	private static String renderLine(Moves moves) {
+	private static String renderLine(Moves moves, int indexY) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			line.append(getCellContent(moves, indexX));
+			line.append(getCellContent(moves, new Point(indexX, indexY)));
 			line.append(getSeparator(indexX));
 		}
 		return line.toString();
@@ -39,9 +27,9 @@ public class TicTacToeGame {
 		return "";
 	}
 
-	private static String getCellContent(Moves moves, int indexX) {
+	private static String getCellContent(Moves moves, Point index) {
 		return moves
-				.find(indexX)
+				.find(index)
 				.map(Move::player)
 				.orElse("_");
 	}

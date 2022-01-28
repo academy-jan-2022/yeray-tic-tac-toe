@@ -20,10 +20,10 @@ public class Moves {
 		return "X";
 	}
 
-	public Optional<Move> find(int indexX) {
+	public Optional<Move> find(Point index) {
 		return moves
 				.stream()
-				.filter(move -> move.point().x() == indexX)
+				.filter(move -> move.point().equals(index))
 				.findFirst();
 	}
 }

@@ -1,13 +1,11 @@
 package example;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class TicTacToeGame {
-	private final List<Move> moves = new ArrayList<>();
+	private final Moves moves = new Moves();
 
 	public String play(Point point) {
-		add(point);
+		moves.add(point);
 
 		var line = renderLine(moves);
 
@@ -26,20 +24,7 @@ public class TicTacToeGame {
 				"_|_|_";
 	}
 
-	private void add(Point point) {
-		moves.add(new Move(getCurrentPlayer(), point));
-	}
-
-	private String getCurrentPlayer() {
-		if (moves.isEmpty())
-			return "X";
-		var move = moves.get(moves.size() - 1);
-		if (move.player().equals("X"))
-			return "O";
-		return "X";
-	}
-
-	private static String renderLine(List<Move> moves) {
+	private static String renderLine(Moves moves) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
 			line.append(getCellContent(moves, indexX));
@@ -54,11 +39,9 @@ public class TicTacToeGame {
 		return "";
 	}
 
-	private static String getCellContent(List<Move> moves, int indexX) {
+	private static String getCellContent(Moves moves, int indexX) {
 		return moves
-				.stream()
-				.filter(move -> move.point().x() == indexX)
-				.findFirst()
+				.find(indexX)
 				.map(Move::player)
 				.orElse("_");
 	}

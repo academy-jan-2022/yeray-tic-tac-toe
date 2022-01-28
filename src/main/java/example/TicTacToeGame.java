@@ -7,11 +7,7 @@ public class TicTacToeGame {
 	private final List<Move> moves = new ArrayList<>();
 
 	public String play(Point point) {
-		if (!moves.isEmpty())
-			moves.add(new Move("O", point));
-
-		if (moves.isEmpty())
-			moves.add(new Move("X", point));
+		moves.add(new Move(getCurrentPlayer(), point));
 
 		var line = renderLine(moves);
 
@@ -28,6 +24,15 @@ public class TicTacToeGame {
 		return line + "\n" +
 				"_|_|_\n" +
 				"_|_|_";
+	}
+
+	private String getCurrentPlayer() {
+		if (moves.isEmpty())
+			return "X";
+		var move = moves.get(moves.size() - 1);
+		if (move.player().equals("X"))
+			return "O";
+		return "X";
 	}
 
 	private static String renderLine(List<Move> moves) {

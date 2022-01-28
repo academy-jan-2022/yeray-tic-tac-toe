@@ -9,7 +9,8 @@ public class Moves {
 	private final List<Move> moves = new ArrayList<>();
 
 	public void add(Point point) {
-		moves.add(new Move(getCurrentPlayer(), point));
+		if (find(point).isEmpty())
+			moves.add(new Move(getCurrentPlayer(), point));
 	}
 
 	private Player getCurrentPlayer() {

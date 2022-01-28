@@ -82,4 +82,19 @@ class TicTacToeGameShould {
 				result
 		);
 	}
+
+	@Test void
+	mark_the_third_move_in_the_center_left_with_an_X() {
+		var game = new TicTacToeGame();
+		game.play(new Point(2, 1));
+		game.play(new Point(1, 1));
+		var result = game.play(new Point(0, 1));
+		assertEquals(
+				"""
+						_|_|_
+						X|O|X
+						_|_|_""",
+				result
+		);
+	}
 }

@@ -1,6 +1,5 @@
 package example;
 
-import static example.Player.O;
 import static example.Player.X;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class Moves {
 
 	private Player getCurrentPlayer() {
 		return getLastMove()
-				.map(move -> move.player().flip())
+				.map(Move::next)
 				.orElse(X);
 	}
 

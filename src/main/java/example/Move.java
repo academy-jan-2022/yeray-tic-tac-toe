@@ -1,7 +1,7 @@
 package example;
 
 public record Move(Player player, Point point) {
-	public boolean isPlayer(Player player) {
-		return this.player == player;
+	public Player next() {
+		return player.flip();
 	}
 }

@@ -15,7 +15,7 @@ public class Moves {
 		if (moves.isEmpty())
 			return "X";
 		var move = moves.get(moves.size() - 1);
-		if (move.player().equals("X"))
+		if (move.isPlayer("X"))
 			return "O";
 		return "X";
 	}

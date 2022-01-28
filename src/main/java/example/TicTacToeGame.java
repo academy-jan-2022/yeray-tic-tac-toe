@@ -1,14 +1,13 @@
 package example;
 
 public class TicTacToeGame {
-	private Point playerXTurn = null;
 	private Move playerXMove = null;
 
 	public String play(Point point) {
 		var line = renderLine(point);
 
-		if (playerXTurn == null)
-			playerXTurn = point;
+		if (playerXMove == null)
+			playerXMove = new Move("x", point);
 
 		if (point.y() == 2)
 			return "_|_|_\n" +
@@ -41,13 +40,13 @@ public class TicTacToeGame {
 	}
 
 	private String getCellContent(Point point, int indexX) {
-		boolean isMarkOnFirstTurn = playerXTurn == null && point.x() == indexX;
-		boolean wasMarkOnFirstTurn = playerXTurn != null && playerXTurn.x() == indexX;
+		boolean isMarkOnFirstTurn = playerXMove == null && point.x() == indexX;
+		boolean wasMarkOnFirstTurn = playerXMove != null && playerXMove.point().x() == indexX;
 
 		if (isMarkOnFirstTurn || wasMarkOnFirstTurn)
 			return "X";
 
-		if (playerXTurn != null && point.x() == indexX)
+		if (playerXMove != null && point.x() == indexX)
 			return "O";
 
 		return "_";

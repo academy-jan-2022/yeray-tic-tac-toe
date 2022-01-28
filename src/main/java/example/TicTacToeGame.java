@@ -30,6 +30,7 @@ public class TicTacToeGame {
 		return moves
 				.find(index)
 				.map(Move::player)
+				.map(Player::toString)
 				.orElse("_");
 	}
 }

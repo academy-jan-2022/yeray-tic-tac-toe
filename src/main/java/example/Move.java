@@ -1,7 +1,7 @@
 package example;
 
-public record Move(String player, Point point) {
-	public boolean isPlayer(String player) {
+public record Move(Player player, Point point) {
+	public boolean isPlayer(Player player) {
 		return this.player.equals(player);
 	}
 }

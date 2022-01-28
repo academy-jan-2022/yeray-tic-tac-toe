@@ -2,6 +2,7 @@ package example;
 
 public class TicTacToeGame {
 	private Point playerXTurn = null;
+	private Move playerXMove = null;
 
 	public String play(Point point) {
 		var line = renderLine(point);
@@ -9,12 +10,12 @@ public class TicTacToeGame {
 		if (playerXTurn == null)
 			playerXTurn = point;
 
-		if (point.getY() == 2)
+		if (point.y() == 2)
 			return "_|_|_\n" +
 					"_|_|_\n" +
 					line;
 
-		if (point.getY() == 1)
+		if (point.y() == 1)
 			return "_|_|_\n" +
 					line + "\n" +
 					"_|_|_";
@@ -40,13 +41,13 @@ public class TicTacToeGame {
 	}
 
 	private String getCellContent(Point point, int indexX) {
-		boolean isMarkOnFirstTurn = playerXTurn == null && point.getX() == indexX;
-		boolean wasMarkOnFirstTurn = playerXTurn != null && playerXTurn.getX() == indexX;
+		boolean isMarkOnFirstTurn = playerXTurn == null && point.x() == indexX;
+		boolean wasMarkOnFirstTurn = playerXTurn != null && playerXTurn.x() == indexX;
 
 		if (isMarkOnFirstTurn || wasMarkOnFirstTurn)
 			return "X";
 
-		if (playerXTurn != null && point.getX() == indexX)
+		if (playerXTurn != null && point.x() == indexX)
 			return "O";
 
 		return "_";

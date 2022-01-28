@@ -7,7 +7,7 @@ public class TicTacToeGame {
 	private final List<Move> moves = new ArrayList<>();
 
 	public String play(Point point) {
-		moves.add(new Move(getCurrentPlayer(), point));
+		add(point);
 
 		var line = renderLine(moves);
 
@@ -24,6 +24,10 @@ public class TicTacToeGame {
 		return line + "\n" +
 				"_|_|_\n" +
 				"_|_|_";
+	}
+
+	private void add(Point point) {
+		moves.add(new Move(getCurrentPlayer(), point));
 	}
 
 	private String getCurrentPlayer() {

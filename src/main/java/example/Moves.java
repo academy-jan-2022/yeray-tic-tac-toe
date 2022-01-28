@@ -9,19 +9,18 @@ import java.util.Optional;
 public class Moves {
 	private final List<Move> moves = new ArrayList<>();
 
-
 	public void add(Point point) {
 		if (find(point).isEmpty() && !isWon())
 			moves.add(new Move(getCurrentPlayer(), point));
 	}
 
 	private boolean isWon() {
-		return Arrays.stream(Player
-				.values())
+		return Arrays.stream(Player.values())
 				.anyMatch(player ->
-						Arrays.stream(WinningLines.all).anyMatch(winningLine ->
-								isWinningLine(winningLine, player)
-						)
+						Arrays.stream(WinningLines.all)
+								.anyMatch(winningLine ->
+										isWinningLine(winningLine, player)
+								)
 				);
 	}
 

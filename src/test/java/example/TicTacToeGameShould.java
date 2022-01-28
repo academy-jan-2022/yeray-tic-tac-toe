@@ -84,6 +84,21 @@ class TicTacToeGameShould {
 	}
 
 	@Test void
+	skip_marking_already_marked_point() {
+		var game = new TicTacToeGame();
+		game.play(new Point(0, 2));
+		game.play(new Point(0, 2));
+		var result = game.play(new Point(1, 1));
+		assertEquals(
+				"""
+						_|_|_
+						_|O|_
+						X|_|_""",
+				result
+		);
+	}
+
+	@Test void
 	mark_the_second_move_in_the_center_with_an_O() {
 		var game = new TicTacToeGame();
 		game.play(new Point(2, 1));

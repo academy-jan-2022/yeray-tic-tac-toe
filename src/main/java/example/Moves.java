@@ -15,29 +15,18 @@ public class Moves {
 	}
 
 	private boolean isWon() {
-		var a = find(new Point(0, 1));
-		var b = find(new Point(1, 1));
-		var c = find(new Point(2, 1));
-		var hasXWon = a.isPresent() && a.get().player() == X
-				&& b.isPresent() && b.get().player() == X
-				&& c.isPresent() && c.get().player() == X;
+		return isWinningLine(new Point(0, 1), new Point(1, 1), new Point(2, 1), X)
+				|| isWinningLine(new Point(0, 0), new Point(1, 0), new Point(2, 0), O)
+				|| isWinningLine(new Point(0, 0), new Point(1, 1), new Point(2, 2), X);
+	}
 
-		var aO = find(new Point(0, 0));
-		var bO = find(new Point(1, 0));
-		var cO = find(new Point(2, 0));
-		var hasOWon = aO.isPresent() && aO.get().player() == O
-				&& bO.isPresent() && bO.get().player() == O
-				&& cO.isPresent() && cO.get().player() == O;
-
-		var aDX = find(new Point(0, 0));
-		var bDX = find(new Point(1, 1));
-		var cDX = find(new Point(2, 2));
-		var hasXWonInDiagonal = aDX.isPresent() && aDX.get().player() == X
-				&& bDX.isPresent() && bDX.get().player() == X
-				&& cDX.isPresent() && cDX.get().player() == X;
-
-
-		return hasXWon || hasOWon || hasXWonInDiagonal;
+	private boolean isWinningLine(Point a, Point b, Point c, Player player) {
+		var aDX = find(a);
+		var bDX = find(b);
+		var cDX = find(c);
+		return aDX.isPresent() && aDX.get().player() == player
+				&& bDX.isPresent() && bDX.get().player() == player
+				&& cDX.isPresent() && cDX.get().player() == player;
 	}
 
 	private Player getCurrentPlayer() {

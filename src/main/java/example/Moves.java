@@ -3,6 +3,7 @@ package example;
 import static example.Player.O;
 import static example.Player.X;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,18 +16,22 @@ public class Moves {
 	}
 
 	private boolean isWon() {
-		return isWinningLine(new Point(0, 1), new Point(1, 1), new Point(2, 1), X)
-				|| isWinningLine(new Point(0, 0), new Point(1, 0), new Point(2, 0), O)
-				|| isWinningLine(new Point(0, 0), new Point(1, 1), new Point(2, 2), X);
+		return isWinningLine(new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) }, X)
+				|| isWinningLine(new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) }, O)
+				|| isWinningLine(new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }, X);
 	}
 
-	private boolean isWinningLine(Point a, Point b, Point c, Player player) {
-		var aDX = find(a);
-		var bDX = find(b);
-		var cDX = find(c);
-		return aDX.isPresent() && aDX.get().player() == player
-				&& bDX.isPresent() && bDX.get().player() == player
-				&& cDX.isPresent() && cDX.get().player() == player;
+	private boolean isWinningLine(Point[] points, Player player) {
+		var foundMoves = moves
+				.stream()
+				.filter(move -> Arrays.stream(points).anyMatch(p -> p.equals(move.point())))
+				.toList();
+		if (foundMoves.size() < 3)
+			return false;
+
+		return foundMoves
+				.stream()
+				.allMatch(move -> move.player() == player);
 	}
 
 	private Player getCurrentPlayer() {

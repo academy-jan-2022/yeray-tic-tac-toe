@@ -16,9 +16,16 @@ public class Moves {
 	}
 
 	private boolean isWon() {
-		return isWinningLine(new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) }, X)
-				|| isWinningLine(new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) }, O)
-				|| isWinningLine(new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }, X);
+		for (Player player: Player.values()) {
+			if (isWinningLine(new Point[] { new Point(0, 1), new Point(1, 1), new Point(2, 1) }, player))
+				return true;
+			if (isWinningLine(new Point[] { new Point(0, 0), new Point(1, 0), new Point(2, 0) }, player))
+				return true;
+			if (isWinningLine(new Point[] { new Point(0, 0), new Point(1, 1), new Point(2, 2) }, player))
+				return true;
+		}
+
+		return false;
 	}
 
 	private boolean isWinningLine(Point[] points, Player player) {

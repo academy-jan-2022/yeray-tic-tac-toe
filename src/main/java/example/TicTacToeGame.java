@@ -4,7 +4,7 @@ public class TicTacToeGame {
 	private Point playerXTurn = null;
 
 	public String play(Point point) {
-		var line = getLine(point);
+		var line = renderLine(point);
 
 		if (playerXTurn == null)
 			playerXTurn = point;
@@ -24,7 +24,7 @@ public class TicTacToeGame {
 				"_|_|_";
 	}
 
-	private String getLine(Point point) {
+	private String renderLine(Point point) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
 			line.append(getCellContent(point, indexX));
@@ -34,7 +34,9 @@ public class TicTacToeGame {
 	}
 
 	private String getSeparator(int indexX) {
-		return indexX < 2 ? "|" : "";
+		if (indexX < 2)
+			return "|";
+		return "";
 	}
 
 	private String getCellContent(Point point, int indexX) {

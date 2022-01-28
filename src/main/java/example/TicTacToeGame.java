@@ -1,13 +1,19 @@
 package example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicTacToeGame {
-	private Move playerXMove = null;
+	private final List<Move> moves = new ArrayList<>();
 
 	public String play(Point point) {
-		var line = renderLine(point);
+		if (!moves.isEmpty())
+			moves.add(new Move("O", point));
 
-		if (playerXMove == null)
-			playerXMove = new Move("x", point);
+		if (moves.isEmpty())
+			moves.add(new Move("X", point));
+
+		var line = renderLine(moves);
 
 		if (point.y() == 2)
 			return "_|_|_\n" +
@@ -24,31 +30,27 @@ public class TicTacToeGame {
 				"_|_|_";
 	}
 
-	private String renderLine(Point point) {
+	private static String renderLine(List<Move> moves) {
 		var line = new StringBuilder();
 		for (int indexX = 0; indexX < 3; indexX++) {
-			line.append(getCellContent(point, playerXMove, indexX));
+			line.append(getCellContent(moves, indexX));
 			line.append(getSeparator(indexX));
 		}
 		return line.toString();
 	}
 
-	private String getSeparator(int indexX) {
+	private static String getSeparator(int indexX) {
 		if (indexX < 2)
 			return "|";
 		return "";
 	}
 
-	private String getCellContent(Point point, Move xMove, int indexX) {
-		boolean isMarkOnFirstTurn = xMove == null && point.x() == indexX;
-		boolean wasMarkOnFirstTurn = xMove != null && xMove.point().x() == indexX;
-
-		if (isMarkOnFirstTurn || wasMarkOnFirstTurn)
-			return "X";
-
-		if (xMove != null && point.x() == indexX)
-			return "O";
-
-		return "_";
+	private static String getCellContent(List<Move> moves, int indexX) {
+		return moves
+				.stream()
+				.filter(move -> move.point().x() == indexX)
+				.findFirst()
+				.map(Move::player)
+				.orElse("_");
 	}
 }

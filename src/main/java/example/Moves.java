@@ -1,5 +1,6 @@
 package example;
 
+import static example.Player.O;
 import static example.Player.X;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,19 @@ public class Moves {
 		var a = find(new Point(0, 1));
 		var b = find(new Point(1, 1));
 		var c = find(new Point(2, 1));
-		return a.isPresent() && a.get().player() == X
-			&& b.isPresent() && b.get().player() == X
-			&& c.isPresent() && c.get().player() == X;
+		var hasXWon = a.isPresent() && a.get().player() == X
+				&& b.isPresent() && b.get().player() == X
+				&& c.isPresent() && c.get().player() == X;
 
+		var aO = find(new Point(0, 0));
+		var bO = find(new Point(1, 0));
+		var cO = find(new Point(2, 0));
+		var hasOWon = aO.isPresent() && aO.get().player() == O
+				&& bO.isPresent() && bO.get().player() == O
+				&& cO.isPresent() && cO.get().player() == O;
+
+
+		return hasXWon || hasOWon;
 	}
 
 	private Player getCurrentPlayer() {

@@ -14,12 +14,15 @@ public class Moves {
 	}
 
 	private Player getCurrentPlayer() {
+		return getLastMove()
+				.map(move -> move.isPlayer(X) ? O : X)
+				.orElse(X);
+	}
+
+	private Optional<Move> getLastMove() {
 		if (moves.isEmpty())
-			return X;
-		var move = moves.get(moves.size() - 1);
-		if (move.isPlayer(X))
-			return O;
-		return X;
+			return Optional.empty();
+		return Optional.of(moves.get(moves.size() - 1));
 	}
 
 	public Optional<Move> find(Point index) {
